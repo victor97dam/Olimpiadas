@@ -58,11 +58,7 @@ public class OlimpiadasController {
     //Devolver todos los Atletas de una nacionalidad determinada
     @GetMapping("/{nacionalidad}")
     public List<Atleta> getAtletasByNacionalidad(@PathVariable String nacionalidad){
-        return atletaRepository
-                .findAll()
-                .parallelStream()
-                .filter(atleta -> atleta.getNacionalidad().toLowerCase().equals(nacionalidad.toLowerCase()))
-                .collect(Collectors.toList());
+        return atletaRepository.findAll().parallelStream().filter(atleta -> atleta.getNacionalidad().toLowerCase().equals(nacionalidad.toLowerCase())).collect(Collectors.toList());
     }
 
     //Devolver todos los atletas que hayan nacido en una fecha anterior a una fecha determinada.
@@ -71,10 +67,7 @@ public class OlimpiadasController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate nacimiento = LocalDate.parse(nacimientoStr, formatter);
         return atletaRepository
-                .findAll()
-                .parallelStream()
-                .filter(atleta -> atleta.getFechanacimiento().isBefore(nacimiento))
-                .collect(Collectors.toList());
+                .findAll().parallelStream().filter(atleta -> atleta.getFechanacimiento().isBefore(nacimiento)).collect(Collectors.toList());
     }
 
     //Retornar todos los atletas agrupados por nacionalidad mediante un Map <<String>>, List <<Atleta>>;
