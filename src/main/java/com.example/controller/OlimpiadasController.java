@@ -61,7 +61,7 @@ public class OlimpiadasController {
         return atletaRepository.findAll().parallelStream().filter(atleta -> atleta.getNacionalidad().toLowerCase().equals(nacionalidad.toLowerCase())).collect(Collectors.toList());
     }
 
-    //Devolver todos los atletas que hayan nacido en una fecha anterior a una fecha determinada.
+    //Devolver todos los atletas que hayan nacido en una fecha anterior a una fecha determinada
     @GetMapping("/nacimiento-antes/{nacimientoStr}")
     public List<Atleta> getAtletasNacimientoAntesDe(@PathVariable String nacimientoStr){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
